@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin     : 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import './assets/css/bootstrap.min.css';
+@import './assets/css/reset.scss';
+
+.small .mat-button-toggle-label-content {
+    line-height: 24px;
+    font-size  : 12px;
+    padding    : 0px 8px;
+}
+
+.compact .mat-card-header-text {
+    margin: 0px;
+}
+
+.small-padding {
+    .mat-expansion-panel-header {
+        padding: 0px 14px;
+    }
+    .mat-expansion-panel-body {
+        padding: 0px 14px 14px;
+    }
+}

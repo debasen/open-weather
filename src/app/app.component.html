@@ -1,0 +1,119 @@
+<div class="container main-content">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <mat-card>
+        <div class="row">
+          <div class="col-4">
+            <h3 class="weather-today">
+              <mat-icon class="big">brightness_high</mat-icon><span>Weather Today</span>
+            </h3>
+          </div>
+          <div class="col-8">
+            <form (ngSubmit)="searchTextChanged()" (keydown.enter)="searchBtn.ripple.launch({centered:true})">
+              <mat-form-field class="city-search-field" appearance="fill">
+                <mat-label>Search Cities</mat-label>
+                <input name="searchText" matInput aria-label="Cities" [matAutocomplete]="auto" [(ngModel)]="searchText">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="citySelected($event)"
+                  [displayWith]="displayCityDropdown">
+                  <mat-option *ngFor="let city of cities | async" [value]="city">
+                    <span class="country-code">{{city.countryCode}}</span> |
+                    <span>{{city.name}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <button #searchBtn mat-icon-button matSuffix type="submit">
+                  <mat-icon>search</mat-icon>
+                </button>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+        <div *ngIf="resultFound">
+          <hr />
+          <div class="weather-report-section">
+            <mat-card-header class="compact">
+              <mat-card-title>{{ cityDetails.city+ ', '+cityDetails.region }}</mat-card-title>
+              <mat-card-subtitle>{{ reportTimestamp | date : 'EEEE, h:mm a'}}</mat-card-subtitle>
+              <div class="unit-type-container">
+                <mat-button-toggle-group class="unit-type small" appearance="standard" [(ngModel)]='unitSystem'
+                  (change)="unitChanged()">
+                  <mat-button-toggle value="standard">Standard</mat-button-toggle>
+                  <mat-button-toggle value="metric">Metric</mat-button-toggle>
+                  <mat-button-toggle value="imperial">Imperial</mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row" *ngIf="!isLoading.weather">
+                <div class="col-6">
+                  <div class="weather-report-container">
+                    <div class="temperature-container">
+                      <img [src]="'http://openweathermap.org/img/w/'+weatherData.weather[0].icon+'.png'" />
+                      <h2>{{weatherData.main.temp}}<span>{{unitMap.get(unitSystem).temperature}}</span></h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="other-details-container">
+                    <p><span class="title">Wind Speed: </span><span>{{ weatherData.wind.speed +' '+
+                        unitMap.get(unitSystem).windSpeed}}</span></p>
+                    <p><span class="title">Feels Like: </span><span>{{ weatherData.main.feels_like +
+                        unitMap.get(unitSystem).temperature}}</span></p>
+                    <p><span class="title">Humidity: </span><span>{{ weatherData.main.humidity +'%'}}</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="loading" *ngIf="isLoading.weather">
+                <mat-icon class="icon-spin">cached</mat-icon>
+              </div>
+            </mat-card-content>
+          </div>
+        </div>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+        </mat-card-actions> -->
+      </mat-card>
+      <div class="hourly-report-container" *ngIf="resultFound">
+        <mat-expansion-panel class="small-padding" (opened)="detailPanelOpened()" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h3>Detailed Report</h3>
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+              Currently I am
+            </mat-panel-description> -->
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-6">
+              <mat-button-toggle-group class="small" appearance="standard" [(ngModel)]='detailedReportAttr'
+                  (change)="detailedReportAttrChanged()">
+                  <mat-button-toggle value="temp">Temperature</mat-button-toggle>
+                  <mat-button-toggle value="humidity">Humidity</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <!-- <div class="col-6 text-right">
+              <div class="unit-type-container">
+                <mat-button-toggle-group class="unit-type small" appearance="standard" [(ngModel)]='detailedReportType'
+                  (change)="detailedReportTypeChanged()">
+                  <mat-button-toggle value="hourly">Hourly</mat-button-toggle>
+                  <mat-button-toggle value="daily">Daily</mat-button-toggle>
+                </mat-button-toggle-group>
+              </div>
+            </div> -->
+          </div>
+          <div class="chart-container">
+            <app-chart *ngIf="panelOpenState && detailedResultFound"  [chartName]="chartNameMap[detailedReportAttr]" [data]="chartData" [xLabels]="chartXLabels"></app-chart>
+          </div>
+          <div class="day-container">
+            <div class="unit-type-container">
+              <mat-button-toggle-group class="small" appearance="standard" [(ngModel)]='day'
+                (change)="dayChanged()">
+                <mat-button-toggle *ngFor="let d of days" [value]="d.value">{{d.name}}</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+</div>
