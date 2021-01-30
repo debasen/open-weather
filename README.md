@@ -1,6 +1,6 @@
 # OpenWeather
 
-## [Demo](https://open-weather.amttemplate.in)
+## [Demo](http://open-weather.amttemplate.in)
 ![Demo Gif](demo/demo.gif)
 
 ## Application Features
