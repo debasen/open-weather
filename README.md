@@ -1,7 +1,7 @@
 # Open Weather
 
 ## [Demo](http://open-weather.amttemplate.in)
-![Demo Gif](demo/demo.gif)
+[![Demo Gif](demo/demo.gif)](http://open-weather.amttemplate.in)
 
 ## Application Features
 - Search with City Name
