@@ -1,4 +1,4 @@
-# OpenWeather
+# Open Weather
 
 ## [Demo](http://open-weather.amttemplate.in)
 ![Demo Gif](demo/demo.gif)
@@ -12,6 +12,7 @@
 ## Technical & Design Features
 ### Responsive
 ![Demo Mobile Gif](demo/demo-mobile.gif)
+
 Fit to be used in Desktop, Tab and mobile devices.
 ### Cross Platform
 Integrated with Cordova and ready to be compiled as android app (apk).
