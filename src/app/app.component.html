@@ -3,14 +3,14 @@
     <div class="col-lg-6 offset-lg-3">
       <mat-card>
         <div class="row">
-          <div class="col-4">
+          <div class="col-5 col-md-4">
             <h3 class="weather-today">
               <mat-icon class="big">brightness_high</mat-icon><span>Weather Today</span>
             </h3>
           </div>
-          <div class="col-8">
+          <div class="col-7 col-md-8">
             <form (ngSubmit)="searchTextChanged()" (keydown.enter)="searchBtn.ripple.launch({centered:true})">
-              <mat-form-field class="city-search-field" appearance="fill">
+              <mat-form-field class="city-search-field w-100" appearance="fill">
                 <mat-label>Search Cities</mat-label>
                 <input name="searchText" matInput aria-label="Cities" [matAutocomplete]="auto" [(ngModel)]="searchText">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="citySelected($event)"
