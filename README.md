@@ -11,7 +11,7 @@
 
 ## Technical & Design Features
 ### Responsive
-![Demo Mobile Gif](demo/demo-mobile.gif)
+<img src="demo/demo-mobile.gif" alt="drawing" width="300"/>
 
 Fit to be used in Desktop, Tab and mobile devices.
 ### Cross Platform
