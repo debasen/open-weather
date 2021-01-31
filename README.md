@@ -21,7 +21,7 @@ Integrated with Cordova and ready to be compiled as android app (apk).
 2. Install [Java (JDK)](https://docs.oracle.com/javase/8/docs/technotes/guides/install/windows_jdk_install.html#A1097272)
 3. Install [Android Studio and SDK](https://developer.android.com/studio)
 4. Connect your android device in debug mode, or start emulator
-5. Run the app, `cordova platform add android`.
+5. Run the app, `cordova run android`.
 6. [See More...](https://medium.com/analytics-vidhya/create-a-mobile-app-using-your-existing-angular-web-project-using-cordova-9c10d377d527)
 ### Material UI
 UI is designed with latest [Angular Material](https://material.angular.io/), for a modern App like UI.
